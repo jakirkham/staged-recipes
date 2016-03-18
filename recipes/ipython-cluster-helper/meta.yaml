@@ -1,0 +1,43 @@
+{% set version = "0.5.1" %}
+
+package:
+  name: ipython-cluster-helper
+  version: {{ version }}
+
+source:
+  fn: ipython-cluster-helper-{{ version }}.tar.gz
+  url: https://pypi.python.org/packages/source/i/ipython-cluster-helper/ipython-cluster-helper-{{ version }}.tar.gz
+  md5: b89698e9111339b3e283ebbce2275eee
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pyzmq >=2.1.11
+    - ipython ==4.0.0
+    - ipyparallel >=4.0.0
+    - netifaces >=0.10.3
+
+  run:
+    - python
+    - pyzmq >=2.1.11
+    - ipython ==4.0.0
+    - ipyparallel >=4.0.0
+    - netifaces >=0.10.3
+
+test:
+  imports:
+    - cluster_helper
+    - cluster_helper.log
+
+about:
+  home: https://github.com/roryk/ipython-cluster-helper
+  license: MIT
+  summary: 'Simplify IPython cluster start up and use for multiple schedulers.'
+
+extra:
+  recipe-maintainers:
+    - jakirkham
