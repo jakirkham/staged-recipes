@@ -49,7 +49,7 @@ install:
 
     # Simplify check for whether we need to skip the build.
     - cmd: set APPVEYOR_SKIP=0
-    - cmd: if "%APPVEYOR_REPO_NAME%" == "conda-forge/staged-recipes" if not defined APPVEYOR_PULL_REQUEST_NUMBER set APPVEYOR_SKIP=1
+    - cmd: if "%APPVEYOR_REPO_NAME%" == "jakirkham/staged-recipes" if not defined APPVEYOR_PULL_REQUEST_NUMBER set APPVEYOR_SKIP=1
 
     # Run the AppVeyor script.
     - cmd: if %APPVEYOR_SKIP% neq 1 call scripts\appveyor_setup.bat
