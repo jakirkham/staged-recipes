@@ -26,6 +26,7 @@ requirements:
 
   run:
     - python
+    - setuptools
     - six
     - lazy_object_proxy
     - wrapt
@@ -34,6 +35,8 @@ test:
   imports:
     - astroid
     - astroid.tests
+    # import modutils to expose the setuptools runtime requirement
+    - astroid.modutils
 
 about:
   home: https://github.com/PyCQA/astroid
