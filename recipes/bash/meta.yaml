@@ -1,0 +1,46 @@
+{% set name = "bash" %}
+{% set version = "3.2.48" %}
+{% set sha256 = "128d281bd5682ba5f6953122915da71976357d7a76490d266c9173b1d0426348" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://ftp.gnu.org/gnu/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: true  # [win]
+
+requirements:
+  build:
+    - toolchain
+    - libiconv
+    - ncurses 5.9*
+    - readline 6.2*
+
+  run:
+    - libiconv
+    - ncurses 5.9*
+    - readline 6.2*
+
+test:
+  commands:
+    - which sh
+    - which bash
+    - sh --version
+    - bash --version
+
+about:
+  home: https://www.gnu.org/software/bash/
+  license: GPL2
+  license_family: GPL2
+  license_file: COPYING
+  summary: The Bourne Again SHell (bash) is an sh-compatible shell.
+
+extra:
+  recipe-maintainers:
+    - jakirkham
