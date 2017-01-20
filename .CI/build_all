@@ -10,17 +10,17 @@ echo "Checking to see if this build is outdated."
 export CONDA_NPY=19
 
 # Remove homebrew.
-echo ""
-echo "Removing homebrew from Travis CI to avoid conflicts."
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew.sh
-chmod +x ~/uninstall_homebrew.sh
-~/uninstall_homebrew.sh -fq
-rm ~/uninstall_homebrew.sh
+#echo ""
+#echo "Removing homebrew from Travis CI to avoid conflicts."
+#curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall > ~/uninstall_homebrew.sh
+#chmod +x ~/uninstall_homebrew.sh
+#~/uninstall_homebrew.sh -fq
+#rm ~/uninstall_homebrew.sh
 
 # Install Miniconda.
 echo ""
 echo "Installing a fresh version of Miniconda."
-[ ! -f ~/cache/miniconda.sh ] && curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh > ~/cache/miniconda.sh
+[ ! -f ~/cache/miniconda.sh ] && curl -L https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > ~/cache/miniconda.sh
 bash ~/cache/miniconda.sh -b -p ~/miniconda
 source ~/miniconda/bin/activate root
 
