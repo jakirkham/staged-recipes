@@ -25,6 +25,7 @@ env:
 
 script:
     - mkdir -p $HOME/cache;
+      find $HOME/cache -type f ;
       if [ -n "$GH_TOKEN" ]; then
         echo "Creating feedstocks from the recipe(s).";
         git config --global user.name "Travis-CI on github.com/conda-forge/staged-recipes";
