@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 
+# Fast finish the PR.
+echo ""
+.CI/fast_finish_ci_build.py -v --ci "travis" "${TRAVIS_REPO_SLUG}" "${TRAVIS_BUILD_NUMBER}" "${TRAVIS_PULL_REQUEST}"
+
 # Set the numpy variable. This isn't used, but conda-build complains if we haven't set it already.
 export CONDA_NPY=19
 
