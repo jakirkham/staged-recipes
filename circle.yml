@@ -7,6 +7,7 @@ general:
 
 checkout:
   post:
+    - .CI/fast_finish_ci_build.py -v --ci "circle" "${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}" "${CIRCLE_BUILD_NUM}" "${CIRCLE_PR_NUMBER}"
     - ./scripts/checkout_merge_commit.sh
 
 machine:
