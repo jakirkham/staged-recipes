@@ -1,0 +1,41 @@
+{% set name = "pysvn" %}
+{% set version = "1.9.4" %}
+{% set sha256 = "5b0f61f27c45699f8a944c9e84e32c63ba8870eb095c9fc67c8506ff0a4ba8da" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: http://pysvn.barrys-emacs.org/source_kits/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - setup_configure.py.patch
+
+build:
+  number: 0
+  skip: true  # [win]
+
+requirements:
+  build:
+    - toolchain
+    - python
+    - svn
+
+  run:
+    - python
+    - svn
+
+test: {}
+
+about:
+  home: http://pysvn.tigris.org/
+  license: Apache 1.1
+  license_family: Apache
+  license_file: LICENSE.txt
+  summary: Subversion support for Python
+
+extra:
+  recipe-maintainers:
+    - jakirkham

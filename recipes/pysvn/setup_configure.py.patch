@@ -1,0 +1,20 @@
+diff --git Source/setup_configure.py Source/setup_configure.py
+index 27aaf7c..022064e 100644
+--- Source/setup_configure.py
++++ Source/setup_configure.py
+@@ -1166,6 +1166,7 @@ class MacOsxCompilerGCC(CompilerGCC):
+             # preferred link method on homebrew for pysvn
+             self._addVar( 'LDSHARED',   '%(CCC)s -bundle -g '
+                                         '-framework System '
++                                        '-lpython '
+                                         '-framework CoreFoundation '
+                                         '-framework Kerberos '
+                                         '-framework Security '
+@@ -1174,7 +1175,6 @@ class MacOsxCompilerGCC(CompilerGCC):
+         else:
+             self._addVar( 'LDSHARED',   '%(CCC)s -bundle -g '
+                                         '-framework System '
+-                                        '%(PYTHON_FRAMEWORK)s '
+                                         '-framework CoreFoundation '
+                                         '-framework Kerberos '
+                                         '-framework Security '
