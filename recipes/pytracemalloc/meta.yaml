@@ -1,0 +1,45 @@
+{% set name = "pytracemalloc" %}
+{% set version = "1.2" %}
+{% set sha256 = "b53a8b722bd672dfc4695cd3c6a042f8df6cd84d30a34a2af9286e14d55afcd5" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: true  # [py>=34]
+  script: python -m pip install --no-deps --ignore-installed .
+
+requirements:
+  build:
+    - {{ compiler("c") }}
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - tracemalloc
+  source_files:
+    - test_tracemalloc.py
+  commands:
+    - python test_tracemalloc.py
+
+about:
+  home: http://pytracemalloc.readthedocs.io/
+  license: MIT, BSD 3-Clause
+  license_file: COPYING
+  summary: "Track memory allocations per Python file"
+  dev_url: https://github.com/vstinner/pytracemalloc
+
+extra:
+  recipe-maintainers:
+    - jakirkham
