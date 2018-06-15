@@ -1,0 +1,47 @@
+{% set name = "lief" %}
+{% set version = "0.9.0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/lief-project/LIEF/archive/{{ version }}.tar.gz
+  sha256: 8f1a12d69d9f6bd8404d4f5809549d1c7f3138cacf3bccd1192cb4f46bfb9eb7
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler("cxx") }}
+    - cmake
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libgflags.dylib                           # [osx]
+    - test -f ${PREFIX}/lib/libgflags_nothreads.dylib                 # [osx]
+    - test -f ${PREFIX}/lib/libgflags.so                              # [linux]
+    - test -f ${PREFIX}/lib/libgflags_nothreads.so                    # [linux]
+    - test -f ${PREFIX}/lib/libgflags.a                               # [not win]
+    - test -f ${PREFIX}/lib/libgflags_nothreads.a                     # [not win]
+    - if not exist %PREFIX%\\Library\\bin\\gflags.dll exit 1          # [win]
+    - if not exist %PREFIX%\\Library\\lib\\gflags.lib exit 1          # [win]
+    - if not exist %PREFIX%\\Library\\lib\\gflags_static.lib exit 1   # [win]
+
+about:
+  home: https://github.com/lief-project/LIEF
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Library to Instrument Executable Formats
+
+extra:
+  recipe-maintainers:
+    - jakirkham
+    - mingwandroid
