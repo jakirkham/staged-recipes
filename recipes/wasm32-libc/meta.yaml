@@ -1,0 +1,33 @@
+{% set version = "0.0.1a1" %}
+
+package:
+  name: wasm32-libc
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/jfbastien/musl.git
+  git_rev: edeb5004e6e016e326c475ce53199755d76d103f
+
+build:
+  skip: true  # [win]
+  number: 0
+
+requirements:
+  build:
+    - clangdev
+    - lld
+  host:
+
+test:
+  commands:
+    - exit 0
+
+about:
+  home: https://github.com/jfbastien/musl
+  license: MIT
+  license_file: COPYRIGHT
+  summary: musl libc experiment
+
+extra:
+  recipe-maintainers:
+    - jakirkham
