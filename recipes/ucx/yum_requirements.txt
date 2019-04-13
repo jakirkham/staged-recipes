@@ -1,0 +1,3 @@
+libibverbs-devel
+libnl-devel
+librdmacm-devel
