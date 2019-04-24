@@ -5,8 +5,8 @@ package:
   name: ucx-split
 
 source:
-  url: https://github.com/openucx/ucx/releases/download/v{{ ucx_version }}/ucx-{{ ucx_version }}.tar.gz
-  sha256: 567119cd80ad2ae6968ecaa4bd1d2a80afadd037ccc988740f668de10d2fdb7e
+  url: https://github.com/openucx/ucx/archive/v1.5.1.tar.gz
+  sha256: e612fd334f75e248765d7c15c4f93f47bfa9fcb34dcebd0878436a7065673a50
 
 build:
   skip: true  # [not linux]
