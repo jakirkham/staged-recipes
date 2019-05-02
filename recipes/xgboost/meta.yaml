@@ -27,6 +27,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('nvcc') }}         # [xgboost_proc_type == "gpu"]
     - git
     - make
     - llvm-openmp >=4.0.1  # [osx]
@@ -34,24 +35,35 @@ requirements:
     - llvm-openmp >=4.0.1  # [osx]
 
 outputs:
+  - name: xgboost-proc
+    version: 1.0.0
+    build:
+      number: 0
+      string: "{{ xgboost_proc_type }}"
+    about:
+      home: https://github.com/conda-forge/xgboost-feedstock
+      license: BSD-3-Clause
+      license_family: BSD
+      summary: A meta-package to select CPU or GPU build.
+
   - name: libxgboost
     script: install-libxgboost.sh
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ compiler('nvcc') }}         # [xgboost_proc_type == "gpu"]
         - git
         - make
         - llvm-openmp >=4.0.1  # [osx]
       host:
         - llvm-openmp >=4.0.1  # [osx]
+        - nccl
       run:
         - llvm-openmp >=4.0.1  # [osx]
-
-  - name: _py-xgboost-mutex
-    version: 2.0
-    build:
-      string: cpu_0
+        - {{ pin_compatible('nccl') }}
+      run_constrained:
+        - xgboost-proc * {{ xgboost_proc_type }}
 
   - name: py-xgboost
     script: install-py-xgboost.sh
@@ -59,6 +71,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ compiler('nvcc') }}         # [xgboost_proc_type == "gpu"]
         - llvm-openmp >=4.0.1  # [osx]
       host:
         - {{ pin_subpackage('libxgboost', exact=True) }}
@@ -68,24 +81,27 @@ outputs:
         - llvm-openmp >=4.0.1  # [osx]
       run:
         - {{ pin_subpackage('libxgboost', exact=True) }}
-        - {{ pin_subpackage('_py-xgboost-mutex', exact=True) }}
         - llvm-openmp >=4.0.1  # [osx]
         - python
         - numpy
         - scipy
         - scikit-learn
+      run_constrained:
+        - xgboost-proc * {{ xgboost_proc_type }}
     test:
       script: test-py-xgboost.py
       imports:
         - xgboost
 
-  - name: py-xgboost-cpu
+  - name: py-xgboost
     requirements:
       host:
         - python
       run:
         - python
         - {{ pin_subpackage('py-xgboost', exact=True) }}
+      run_constrained:
+        - xgboost-proc * {{ xgboost_proc_type }}
 
   - name: xgboost
     requirements:
@@ -94,11 +110,6 @@ outputs:
       run:
         - python
         - {{ pin_subpackage('py-xgboost', exact=True) }}
-
-  - name: _r-xgboost-mutex
-    version: 2.0
-    build:
-      string: cpu_0
 
   - name: r-xgboost
     script: install-r-xgboost.sh
@@ -123,7 +134,6 @@ outputs:
         - r-knitr
       run:
         - {{ pin_subpackage('libxgboost', exact=True) }}
-        - {{ pin_subpackage('_r-xgboost-mutex', exact=True) }}
         - llvm-openmp >=4.0.1  # [osx]
         - r-base
         - r-matrix
@@ -136,13 +146,15 @@ outputs:
       commands:
         - Rscript test-r-xgboost.r
 
-  - name: r-xgboost-cpu
+  - name: r-xgboost
     requirements:
       host:
         - r-base
       run:
         - r-base
         - {{ pin_subpackage('r-xgboost', exact=True) }}
+      run_constrained:
+        - xgboost-proc * {{ xgboost_proc_type }}
 
 about:
   home: https://github.com/dmlc/xgboost

@@ -30,4 +30,11 @@ then
     echo "USE_OPENMP = 0" >> config.mk
 fi
 
+# enable GPU builds
+if [[ "${xgboost_proc_type}" == "gpu" ]]
+then
+    echo "USE_CUDA = 1" >> config.mk
+    echo "USE_NCCL = 1" >> config.mk
+fi
+
 make -j${CPU_COUNT}
