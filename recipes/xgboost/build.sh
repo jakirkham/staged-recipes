@@ -31,6 +31,7 @@ then
 fi
 
 # enable GPU builds
+echo "xgboost_proc_type = ${xgboost_proc_type}"
 if [[ "${xgboost_proc_type}" == "gpu" ]]
 then
     echo "USE_CUDA = 1" >> config.mk
