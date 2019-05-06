@@ -15,6 +15,7 @@ cmake -G "Unix Makefiles" \
       -D USE_CUDA:BOOL=ON \
       -D CUDA_TOOLKIT_ROOT_DIR:PATH="${CUDA_HOME}" \
       -D CUDA_HOST_COMPILER:PATH="${CXX}" \
+      -D CMAKE_CUDA_COMPILER:PATH="${CUDA_HOME}/bin/nvcc" \
       -D CMAKE_CXX_STANDARD:STRING="11" \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
       -D USE_NCCL:BOOL=ON \
