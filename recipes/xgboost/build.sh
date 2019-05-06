@@ -15,7 +15,6 @@ cmake -G "Unix Makefiles" \
       -D USE_CUDA:BOOL=ON \
       -D CUDA_TOOLKIT_ROOT_DIR:PATH="${CUDA_HOME}" \
       -D CUDA_HOST_COMPILER:PATH="${CXX}" \
-      -D CUDA_NVCC_FLAGS:STRING="${CXX_FLAGS}" \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
       "${SRC_DIR}"
