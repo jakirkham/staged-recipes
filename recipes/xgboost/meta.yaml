@@ -33,6 +33,7 @@ requirements:
     - make
     - llvm-openmp >=4.0.1  # [osx]
   host:
+    - nccl                 # [xgboost_proc_type == "gpu"]
     - llvm-openmp >=4.0.1  # [osx]
 
 outputs:
@@ -60,7 +61,7 @@ outputs:
         - llvm-openmp >=4.0.1  # [osx]
       host:
         - llvm-openmp >=4.0.1  # [osx]
-        - nccl
+        - nccl                           # [xgboost_proc_type == "gpu"]
       run:
         - llvm-openmp >=4.0.1  # [osx]
         - {{ pin_compatible('nccl') }}
