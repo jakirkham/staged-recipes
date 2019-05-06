@@ -20,7 +20,7 @@ source:
     - 0005-Add-ADD_-FLAGS-to-end-of-commandlines-osx.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or linux32]
 
 requirements:
@@ -29,6 +29,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('nvcc') }}         # [xgboost_proc_type == "gpu"]
     - git
+    - cmake
     - make
     - llvm-openmp >=4.0.1  # [osx]
   host:
@@ -54,6 +55,7 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ compiler('nvcc') }}         # [xgboost_proc_type == "gpu"]
         - git
+        - cmake
         - make
         - llvm-openmp >=4.0.1  # [osx]
       host:
@@ -121,6 +123,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - git
+        - cmake
         - make
         - llvm-openmp >=4.0.1  # [osx]
       host:
@@ -159,7 +162,7 @@ outputs:
 about:
   home: https://github.com/dmlc/xgboost
   license: Apache-2.0
-  license_file: {{ RECIPE_DIR }}/LICENSE
+  license_file: LICENSE
   summary: |
     Scalable, Portable and Distributed Gradient Boosting (GBDT, GBRT or GBM) Library, for
     Python, R, Java, Scala, C++ and more. Runs on single machine, Hadoop, Spark, Flink

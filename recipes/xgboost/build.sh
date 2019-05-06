@@ -2,40 +2,19 @@
 
 # http://xgboost.readthedocs.io/en/latest/build.html
 
-if [[ ${OSTYPE} == msys ]]; then
-  if [[ "${ARCH}" == "32" ]]; then
-    # SSE2 is used and we get called from MSVC
-    # CPython so 32-bit GCC needs realignment.
-    export CC="gcc -mstackrealign"
-    export CXX="g++ -mstackrealign"
-  fi
-  cp make/mingw64.mk config.mk
-else
-  cp make/config.mk config.mk
-fi
-
-if [[ $(uname) == Darwin ]] && [[ ${CC} != "clang" ]]
+if [[ $(uname) == Darwin ]]
 then
     # this seems to be expected by clang when linking
     ln -s ${PREFIX}/lib/libomp.dylib ${PREFIX}/lib/libgomp.dylib
 fi
 
-# XGBoost uses its own compilation flags.
-echo "ADD_LDFLAGS = ${LDFLAGS}" >> config.mk
-echo "ADD_CFLAGS = ${CFLAGS}" >> config.mk
-
-# disable openmp for os toolchain builds
-if [[ $(uname) == Darwin ]] && [[ ${CC} == "clang" ]]
-then
-    echo "USE_OPENMP = 0" >> config.mk
-fi
-
-# enable GPU builds
-echo "xgboost_proc_type = ${xgboost_proc_type}"
-if [[ "${xgboost_proc_type}" == "gpu" ]]
-then
-    echo "USE_CUDA = 1" >> config.mk
-    echo "USE_NCCL = 1" >> config.mk
-fi
-
+cmake -G "Unix Makefiles" \
+      -D CMAKE_BUILD_TYPE:STRING="Release" \
+      -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
+      -D CMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
+      -D USE_CUDA:BOOL=ON \
+      -D CUDA_TOOLKIT_ROOT_DIR:PATH="${CUDA_HOME}" \
+      -D USE_NCCL:BOOL=ON \
+      -D NCCL_ROOT:PATH="${PREFIX}" \
+      "${SRC_DIR}"
 make -j${CPU_COUNT}
