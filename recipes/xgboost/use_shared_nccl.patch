@@ -7,10 +7,10 @@ Subject: [PATCH] Use shared NCCL library
  cmake/modules/FindNccl.cmake | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git cmake/modules/FindNccl.cmake cmake/modules/FindNccl.cmake
+diff --git a/cmake/modules/FindNccl.cmake b/cmake/modules/FindNccl.cmake
 index 2d39abf19..ec98a8632 100644
---- cmake/modules/FindNccl.cmake
-+++ cmake/modules/FindNccl.cmake
+--- a/cmake/modules/FindNccl.cmake
++++ b/cmake/modules/FindNccl.cmake
 @@ -33,7 +33,7 @@
  # This module assumes that the user has already called find_package(CUDA)
  
