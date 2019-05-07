@@ -17,6 +17,7 @@ cmake -G "Unix Makefiles" \
       -D CUDA_HOST_COMPILER:PATH="${CXX}" \
       -D CMAKE_CUDA_COMPILER:PATH="${CUDA_HOME}/bin/nvcc" \
       -D CUDA_PROPAGATE_HOST_FLAGS:BOOL=OFF \
+      -D CUDA_NVCC_FLAGS:STRING="-I${PREFIX}/include" \
       -D CMAKE_CXX_STANDARD:STRING="11" \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
       -D USE_NCCL:BOOL=ON \
