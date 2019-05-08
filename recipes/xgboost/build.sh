@@ -2,6 +2,9 @@
 
 # http://xgboost.readthedocs.io/en/latest/build.html
 
+rm -f "${BUILD_PREFIX}/bin/nvcc"
+export PREFIX="${PREFIX}:${CUDA_HOME}/bin/nvcc"
+
 if [[ $(uname) == Darwin ]]
 then
     # this seems to be expected by clang when linking
