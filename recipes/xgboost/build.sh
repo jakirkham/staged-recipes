@@ -11,6 +11,9 @@ then
     ln -s ${PREFIX}/lib/libomp.dylib ${PREFIX}/lib/libgomp.dylib
 fi
 
+export CUDF_ROOT="${PREFIX}"
+export NCCL_ROOT="${PREFIX}"
+
 cmake --verbose \
       -G "Unix Makefiles" \
       -D CMAKE_BUILD_TYPE:STRING="Release" \
