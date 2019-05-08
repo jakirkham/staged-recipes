@@ -34,6 +34,7 @@ requirements:
     - make
     - llvm-openmp >=4.0.1  # [osx]
   host:
+    - libcudf              # [xgboost_proc_type == "gpu"]
     - nccl                 # [xgboost_proc_type == "gpu"]
     - llvm-openmp >=4.0.1  # [osx]
 
@@ -62,6 +63,7 @@ outputs:
         - llvm-openmp >=4.0.1  # [osx]
       host:
         - llvm-openmp >=4.0.1  # [osx]
+        - libcudf              # [xgboost_proc_type == "gpu"]
         - nccl                           # [xgboost_proc_type == "gpu"]
       run:
         - llvm-openmp >=4.0.1  # [osx]
