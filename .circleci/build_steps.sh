@@ -52,6 +52,7 @@ find ~/conda-recipes -mindepth 2 -maxdepth 2 -type f -name "yum_requirements.txt
     xargs -r /usr/bin/sudo -n yum install -y
 
 #python ~/.ci_support/build_all.py ~/conda-recipes
+conda build ~/conda-recipes/nvcc
 conda build ~/conda-recipes/xgboost
 
 touch "/home/conda/staged-recipes/build_artifacts/conda-forge-build-done"
