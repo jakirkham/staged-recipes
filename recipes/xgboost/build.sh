@@ -27,6 +27,6 @@ cmake -G "Unix Makefiles" \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
       -D USE_CUDF:BOOL=ON \
-      -D CUDF_INCLUDE_DIR:PATH="${PREFIX}/include" \
+      -D CUDF_ROOT:PATH="${PREFIX}" \
       "${SRC_DIR}"
 make -j${CPU_COUNT}
