@@ -30,7 +30,11 @@ cmake --verbose \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
+      -D NCCL_INCLUDE_DIR:PATH="${PREFIX}/include" \
+      -D NCCL_LIBRARY:PATH="${PREFIX}/lib/libnccl.so" \
       -D USE_CUDF:BOOL=ON \
       -D CUDF_ROOT:PATH="${PREFIX}" \
+      -D CUDF_INCLUDE_DIR:PATH="${PREFIX}/include" \
+      -D CUDF_LIBRARY:PATH="${PREFIX}/lib/libcudf.so" \
       "${SRC_DIR}"
 make -j${CPU_COUNT}
