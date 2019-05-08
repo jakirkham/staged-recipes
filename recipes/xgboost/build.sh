@@ -11,7 +11,8 @@ then
     ln -s ${PREFIX}/lib/libomp.dylib ${PREFIX}/lib/libgomp.dylib
 fi
 
-cmake -G "Unix Makefiles" \
+cmake --verbose \
+      -G "Unix Makefiles" \
       -D CMAKE_BUILD_TYPE:STRING="Release" \
       -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
       -D CMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
