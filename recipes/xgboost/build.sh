@@ -28,7 +28,7 @@ cmake --verbose \
       -D CMAKE_CUDA_INCLUDE_DIRS:PATH="${PREFIX}/include;${CUDA_HOME}/include" \
       -D CMAKE_CXX_STANDARD:STRING="11" \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
-      -D CUDA_NVCC_FLAGS:STRING="" \
+      -D CUDA_NVCC_FLAGS:STRING="-std=c++11" \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
       -D NCCL_INCLUDE_DIR:PATH="${PREFIX}/include" \
