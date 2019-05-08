@@ -11,6 +11,9 @@ export PYTHONUNBUFFERED=1
 cat >~/.condarc <<CONDARC
 
 channels:
+ - jakirkham/label/rapidsai-xgboost
+ - rapidsai-nightly
+ - rapidsai
  - conda-forge
  - defaults
 
