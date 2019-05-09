@@ -29,7 +29,7 @@ cmake \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
       -D NCCL_INCLUDE_DIR:PATH="${PREFIX}/include" \
-      -D NCCL_LIBRARY:PATH="${PREFIX}/lib/libnccl.so" \
+      -D BUILD_WITH_SHARED_NCCL:BOOL=ON \
       -D USE_CUDF:BOOL=ON \
       -D CUDF_ROOT:PATH="${PREFIX}" \
       -D CUDF_INCLUDE_DIR:PATH="${PREFIX}/include" \
