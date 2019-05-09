@@ -22,5 +22,6 @@ cmake -G "Unix Makefiles" \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
+      -D BUILD_WITH_SHARED_NCCL:BOOL=ON \
       "${SRC_DIR}"
 make -j${CPU_COUNT}
