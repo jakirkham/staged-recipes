@@ -1,15 +1,13 @@
 {% set name = "dask-xgboost" %}
-{% set version = "0.1.5" %}
-{% set sha256 = "1860d06965fe68def1c83b9195130a92050fd4bc28bf2be689898a3a74ee1316" %}
+{% set version = "0.2.0.dev28" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  git_url: https://github.com/rapidsai/dask-xgboost
+  git_tag: dask-cudf
 
 build:
   number: 0
@@ -18,13 +16,14 @@ build:
 
 requirements:
   build:
-    - python
+    - python >=3
     - setuptools
   run:
-    - python
+    - python >=3
     - dask >=0.14.0
     - distributed >=1.16.0
     - xgboost
+    - cudf
 
 test:
   imports:
