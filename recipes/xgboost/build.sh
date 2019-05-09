@@ -26,7 +26,7 @@ cmake --verbose \
       -D CUDA_PROPAGATE_HOST_FLAGS:BOOL=OFF \
       -D CMAKE_CXX_STANDARD:STRING="11" \
       -D CMAKE_CUDA_STANDARD:STRING="11" \
-      -D CMAKE_CUDA_FLAGS:STRING="" \
+      -D CMAKE_CUDA_FLAGS:STRING=" -std=c++11 " \
       -D USE_NCCL:BOOL=ON \
       -D NCCL_ROOT:PATH="${PREFIX}" \
       -D NCCL_INCLUDE_DIR:PATH="${PREFIX}/include" \
