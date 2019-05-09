@@ -35,4 +35,4 @@ cmake --verbose \
       -D CUDF_ROOT:PATH="${PREFIX}" \
       -D CUDF_INCLUDE_DIR:PATH="${PREFIX}/include" \
       "${SRC_DIR}"
-make -j${CPU_COUNT}
+make -j${CPU_COUNT} VERBOSE=1
