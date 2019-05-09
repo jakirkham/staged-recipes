@@ -2,8 +2,8 @@
 
 # http://xgboost.readthedocs.io/en/latest/build.html
 
-rm -f "${BUILD_PREFIX}/bin/nvcc"
-export PREFIX="${PREFIX}:${CUDA_HOME}/bin/nvcc"
+#rm -f "${BUILD_PREFIX}/bin/nvcc"
+#export PREFIX="${PREFIX}:${CUDA_HOME}/bin/nvcc"
 
 if [[ $(uname) == Darwin ]]
 then
