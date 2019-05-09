@@ -14,7 +14,7 @@ fi
 export CUDF_ROOT="${PREFIX}"
 export NCCL_ROOT="${PREFIX}"
 
-cmake --verbose \
+cmake \
       -G "Unix Makefiles" \
       -D CMAKE_BUILD_TYPE:STRING="Release" \
       -D CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON \
