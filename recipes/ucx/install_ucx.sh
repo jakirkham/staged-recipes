@@ -12,6 +12,7 @@ if [ ${ucx_proc_type} == "gpu" ]; then
     CUDA_CONFIG_ARG="--with-cuda=${CUDA_HOME}"
 fi
 
+cd "${SRC_DIR}/ucx"
 ./autogen.sh
 ./configure \
     --build="${BUILD}" \

@@ -1,13 +1,19 @@
 {% set ucx_version = "1.7.0.dev" %}
 {% set ucx_commit = "4df4fb99c" %}  # from OpenUCX's master branch
+{% set ucx_py_version = "0.1.0.dev" %}
+{% set ucx_py_commit = "4030eff" %}  # from rapidsai's devel branch
 {% set number = "0" %}
 
 package:
   name: ucx-split
 
 source:
-  git_url: https://github.com/openucx/ucx
-  git_rev: {{ ucx_commit }}
+  - git_url: https://github.com/openucx/ucx
+    git_rev: {{ ucx_commit }}
+    folder: ucx
+  - git_url: https://github.com/rapidsai/ucx-py
+    git_rev: {{ ucx_py_commit }}
+    folder: ucx-py
 
 build:
   skip: true  # [not linux]
@@ -55,8 +61,39 @@ outputs:
       home: https://github.com/openucx/ucx
       license: BSD-3-Clause
       license_family: BSD
-      license_file: LICENSE
+      license_file: ucx/LICENSE
       summary: Unified Communication X.
+
+  - name: ucx-py
+    version: "{{ ucx_py_version }}{{ number }}+g{{ ucx_py_commit }}"
+    build:
+      number: {{ number }}
+      skip: true  # [py<36]
+      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ number }}_{{ ucx_proc_type }}"
+    requirements:
+      build:
+        - {{ compiler("c") }}
+        - {{ compiler("cxx") }}
+        - {{ compiler("nvcc") }}         # [ucx_proc_type == "gpu"]
+        - {{ cdt("libnl") }}
+        - {{ cdt("libibverbs") }}
+        - {{ cdt("librdmacm") }}
+      host:
+        - python
+        - cython
+        - ucx
+      run:
+        - python
+        - {{ pin_subpackage("ucx", exact=True) }}
+      run_constrained:
+        - ucx-proc * {{ ucx_proc_type }}
+    script: install_ucx-py.sh
+    test:
+      imports:
+        - ucp
+    about:
+      home: https://github.com/rapidsai/ucx-py
+      summary: Python bindings for UCX
 
 extra:
   recipe-maintainers:
