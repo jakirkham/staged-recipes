@@ -9,6 +9,7 @@ export LDFLAGS="${LDFLAGS} -L${CONDA_BUILD_SYSROOT}/usr/lib64"
 
 CUDA_CONFIG_ARG=""
 if [ ${ucx_proc_type} == "gpu" ]; then
+    export CFLAGS="${CFLAGS} -I${CUDA_HOME}/include"
     CUDA_CONFIG_ARG="--with-cuda=${CUDA_HOME}"
 fi
 

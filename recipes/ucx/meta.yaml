@@ -1,5 +1,5 @@
 {% set ucx_version = "1.7.0.dev" %}
-{% set ucx_commit = "4df4fb99c" %}  # from OpenUCX's master branch
+{% set ucx_commit = "c5f849277" %}  # from Akshay's ucx-cuda branch
 {% set ucx_py_version = "0.1.0.dev" %}
 {% set ucx_py_commit = "4030eff" %}  # from rapidsai's devel branch
 {% set number = "0" %}
@@ -8,7 +8,7 @@ package:
   name: ucx-split
 
 source:
-  - git_url: https://github.com/openucx/ucx
+  - git_url: https://github.com/Akshay-Venkatesh/ucx
     git_rev: {{ ucx_commit }}
     folder: ucx
   - git_url: https://github.com/rapidsai/ucx-py

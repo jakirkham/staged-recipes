@@ -2,7 +2,7 @@ python:
   - 3.6
   - 3.7
 ucx_proc_type:
-- cpu
+#- cpu
 - gpu
 nvcc_compiler:
 - nvcc
