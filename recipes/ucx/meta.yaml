@@ -81,6 +81,7 @@ outputs:
         - {{ cdt("librdmacm") }}
       host:
         - python
+        - setuptools
         - cython
         - ucx
       run:
