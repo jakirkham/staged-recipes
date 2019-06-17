@@ -36,6 +36,7 @@ outputs:
         - {{ cdt("libnl") }}
         - {{ cdt("libibverbs-devel") }}
         - {{ cdt("librdmacm-devel") }}
+        - {{ cdt("numactl-devel") }}
         - automake
         - autoconf
         - libtool
