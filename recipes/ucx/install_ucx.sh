@@ -20,7 +20,6 @@ cd "${SRC_DIR}/ucx"
     --host="${HOST}" \
     --prefix="${PREFIX}" \
     --disable-cma \
-    --disable-numa \
     --enable-mt \
     --with-gnu-ld \
     --with-rdmacm="/usr" \
