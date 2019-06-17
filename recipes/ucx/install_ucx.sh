@@ -12,6 +12,10 @@ if [ ${ucx_proc_type} == "gpu" ]; then
     CUDA_CONFIG_ARG="--with-cuda=${CUDA_HOME}"
 fi
 
+# Disable CMA to workaround an upstream bug.
+# xref: https://github.com/openucx/ucx/issues/3391
+# xref: https://github.com/openucx/ucx/pull/3424
+
 #./autogen.sh
 ./configure \
     --build="${BUILD}" \
