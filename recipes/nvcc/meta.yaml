@@ -11,8 +11,8 @@ build:
 outputs:
   - name: "{{ name }}_{{ target_platform }}"
     version: "{{ version }}"
+    script: install_nvcc.sh
     build:
-      number: 0
       script_env:
         - CUDA_HOME
       ignore_run_exports:
