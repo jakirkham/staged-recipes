@@ -1,5 +1,5 @@
 {% set ucx_version = "1.7.0.dev" %}
-{% set ucx_commit = "c5f849277" %}  # from Akshay's ucx-cuda branch
+{% set ucx_commit = "2d85597" %}  # from Akshay's ucx-cuda branch
 {% set ucx_py_version = "0.1.0.dev" %}
 {% set ucx_py_commit = "4030eff" %}  # from rapidsai's devel branch
 {% set number = "0" %}
