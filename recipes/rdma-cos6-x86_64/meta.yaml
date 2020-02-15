@@ -1,0 +1,30 @@
+package:
+  name: rdma-cos6-x86_64
+  version: 6.9_4.1
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/rdma-6.9_4.1-3.el6.noarch.rpm
+    sha256: 28beb0e31e057343c2e3a55e3ae10f912181fd169301e626fbdd7f9d41073e93
+    folder: binary
+  - url: http://vault.centos.org/6.10/os/Source/SPackages/rdma-6.9_4.1-3.el6.src.rpm
+    folder: source
+
+build:
+  number: 0
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - udev-cos6-x86_64 >=145
+  run:
+    - udev-cos6-x86_64 >=145
+
+about:
+  home: 
+  license: GPL (>= 2)
+  license_family: GPL3
+  summary: "(CDT) Infiniband/iWARP Kernel Module Initializer"
+  description: |
+        User space initialization scripts for the kernel InfiniBand/iWARP drivers
